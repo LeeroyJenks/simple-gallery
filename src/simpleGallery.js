@@ -1,4 +1,4 @@
-//small gallery plugin by dan
+//small gallery plugin by LeeroyJenks
 (function($) {
 	$.fn.simpleGallery = function(options) {
 		var settings = $.extend({
