@@ -62,6 +62,7 @@
 				var $l = $g.find(settings.slidesContainer) || null;
 				var numberOfChildren = $l.find('li').length;
 				var $simpleGallery = $l.wrap('<div class="simple-gallery" style="opacity: 0;">').parent();
+				var tallest = Math.max.apply(null, $l.children().map(function(){ return $(this).outerHeight(); }).get());
 
 				var listProperties = function(elementType, i) {
 					var index = i || 0;
@@ -80,7 +81,7 @@
 						'ul': {
 							'fade': {
 								'width': '100%',
-								'height': (settings.adaptiveHeight ? $l.find('li:first-child').height() : ($g.outerWidth() * 0.63)) + 'px',
+								'height': (settings.adaptiveHeight ? $l.find('li:first-child').height() : tallest) + 'px',
 								'overflow': 'hidden',
 								'display': 'block',
 								'listStyle': 'none'
