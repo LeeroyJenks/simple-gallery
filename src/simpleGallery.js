@@ -60,7 +60,6 @@
 
 			var setupGallery = function(gal) {
 				if($(gal).is(':hidden')){
-					console.log('gallery is hidden!');
 					return false;
 				}
 				var $g = $(gal);
