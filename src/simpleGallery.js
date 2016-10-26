@@ -319,18 +319,21 @@
 			} else {
 				galleryInitiated = setupGallery($(gEl));
 			}
-			if (settings.adaptiveHeight || !galleryInitiated) {
-				$(window).resize(function() {
-					if(settings.adaptiveHeight){
-						$l.css({
-							'height': $l.find('.current').children('img').height() + 'px'
-						});
-					}
-					if(!galleryInitiated){
-						galleryInitiated = setupGallery($(gEl));
-					}
-				});
-			}
+			$(window).resize(function() {
+				if(settings.adaptiveHeight){
+					$l.css({
+						'height': $l.find('.current').children('img').height() + 'px'
+					});
+				}else{
+					var tallest = Math.max.apply(null, $l.children().map(function(){ return $(this).outerHeight(); }).get());
+					$l.css({
+					  'height': tallest + 'px'
+					});
+				  }
+				if(!galleryInitiated){
+					galleryInitiated = setupGallery($(gEl));
+				}
+			});
 
 		});
 	};
