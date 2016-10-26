@@ -11,6 +11,7 @@
 			dotsPositionY: 'center',
 			arrowsType: 'arrow',
 			arrowsColor: '#000',
+			dotsColor: '#000',
 			slidesContainer: '.images-list',
 			swipe: 'horizontal'
 		}, options);
@@ -152,9 +153,9 @@
 							'vertical-align': settings.swipe,
 							'position': 'relative',
 							'margin': '5px',
-							'border': '1px solid #000',
+							'border': '1px solid ' + settings.dotsColor,
 							'border-radius': '53%',
-							'background-color': (index === 0 ? '#000' : 'transparent'),
+							'background-color': (index === 0 ? settings.dotsColor : 'transparent'),
 							'text-indent': '-9999em',
 							'overflow': 'hidden',
 							'cursor': 'pointer'
@@ -280,7 +281,7 @@
 					}
 				}
 				if ((settings.navigation == 'both' || settings.navigation == 'dots') && settings.navigationType == 'dots' && $nav.length > 0) {
-					$nav.find('.current').css('background-color', '#000').siblings().css('background-color', 'transparent');
+					$nav.find('.current').css('background-color', settings.dotsColor).siblings().css('background-color', 'transparent');
 				}
 				if (settings.adaptiveHeight) {
 					$l.animate({
