@@ -59,6 +59,10 @@
 			};
 
 			var setupGallery = function(gal) {
+				if($(gal).is(':hidden')){
+					console.log('gallery is hidden!');
+					return false;
+				}
 				var $g = $(gal);
 				var $l = $g.find(settings.slidesContainer) || null;
 				var numberOfChildren = $l.find('li').length;
@@ -219,6 +223,7 @@
 				} else {
 					console.log('Error. No "' + settings.slidesContainer + '" class found.');
 				}
+				return true;
 
 			};
 
@@ -305,19 +310,25 @@
 			// initialize
 			var $l = $(this).find(settings.slidesContainer) || null;
 			var firstImage = $(gEl).find(settings.slidesContainer + ' li:first-child img').get(0);
-
+			var galleryInitiated;
+			
 			if (firstImage && !firstImage.complete) {
 				$(firstImage).load(function() {
-					setupGallery($(gEl));
+					galleryInitiated = setupGallery($(gEl));
 				});
 			} else {
-				setupGallery($(gEl));
+				galleryInitiated = setupGallery($(gEl));
 			}
-			if (settings.adaptiveHeight) {
+			if (settings.adaptiveHeight || !galleryInitiated) {
 				$(window).resize(function() {
-					$l.css({
-						'height': $l.find('.current').children('img').height() + 'px'
-					});
+					if(settings.adaptiveHeight){
+						$l.css({
+							'height': $l.find('.current').children('img').height() + 'px'
+						});
+					}
+					if(!galleryInitiated){
+						galleryInitiated = setupGallery($(gEl));
+					}
 				});
 			}
 
