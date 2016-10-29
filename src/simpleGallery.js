@@ -189,8 +189,8 @@
 						});
 
 					if (settings.navigation == 'arrows' || settings.navigation == 'both') {
-						var $prev = $('<a class="ng-prev ' + settings.arrowsType + '" href="#prev"><span class="arrow-one" style="background-color:' + settings.arrowsColor + ';"></span><span class="arrow-two" style="border-color:' + settings.arrowsColor + ';"></span></a>');
-						var $next = $('<a class="ng-next ' + settings.arrowsType + '" href="#next"><span class="arrow-one" style="background-color:' + settings.arrowsColor + ';"></span><span class="arrow-two" style="border-color:' + settings.arrowsColor + ';"></span></a>');
+						var $prev = $('<a class="sg-prev ' + settings.arrowsType + '" href="#prev"><span class="arrow-one" style="background-color:' + settings.arrowsColor + ';"></span><span class="arrow-two" style="border-color:' + settings.arrowsColor + ';"></span></a>');
+						var $next = $('<a class="sg-next ' + settings.arrowsType + '" href="#next"><span class="arrow-one" style="background-color:' + settings.arrowsColor + ';"></span><span class="arrow-two" style="border-color:' + settings.arrowsColor + ';"></span></a>');
 						$simpleGallery.append($prev, $next);
 						$prev.on('click.simpleGal', function(event) {
 							changeImage("previous");
