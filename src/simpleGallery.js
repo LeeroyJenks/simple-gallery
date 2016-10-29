@@ -203,7 +203,7 @@
 						var $galNav = $('<div class="gallery-nav"></div>');
 						$l.after($galNav);
 						var dotList = '';
-						if (settings.navigation == 'dots') {
+						if (settings.navigation == 'dots' || settings.navigation == 'both') {
 							for (var i = 0; i < numberOfChildren; i++) {
 								var $thisDot = $('<a class="dot dot-' + i + ((i === 0) ? ' current' : '') + '" data-number="' + i + '" >' + (i + 1) + '</a>');
 								$galNav.css(dotProperties('parent')).append($thisDot);
