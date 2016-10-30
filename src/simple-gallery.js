@@ -132,7 +132,7 @@
 					return styling[elementType][settings.animationType];
 				};
 
-				var dotProperties = function(dotType, i) {
+				var navProperties = function(navType, i) {
 					var index = i || 0;
 
 					var styles = {
@@ -165,10 +165,64 @@
 						},
 						'numbers': {
 
+						},
+						'arrows-left': {
+							'display': 'block',
+							'position': 'absolute',
+							'top': '50%',
+							'left': '0',
+							'width': '14px',
+							'height': '24px',
+							'-webkit-transform': 'translate(-200%, -50%)',
+							'-moz-transform': 'translate(-200%, -50%)',
+							'-ms-transform': 'translate(-200%, -50%)',
+							'transform': 'translate(-200%, -50%)'
+						},
+						'arrows-right':{
+							'display': 'block',
+							'position': 'absolute',
+							'top': '50%',
+							'right': '0',
+							'width': '14px',
+							'height': '24px',
+							'-webkit-transform': 'translate(200%, -50%)',
+							'-moz-transform': 'translate(200%, -50%)',
+							'-ms-transform': 'translate(200%, -50%)',
+							'transform': 'translate(200%, -50%)'
+						},
+						'arrows-left-one': {
+							'display': 'block',
+							'position': 'absolute',
+							'top': '50%',
+							'left': '3px',
+							'width': '16px',
+							'height': '16px',
+							'border-left': '1px solid',
+							'border-bottom': '1px solid',
+							'border-color': settings.arrowsColor,
+							'-webkit-transform': 'translateY(-50%) rotate(45deg)',
+							'-moz-transform': 'translateY(-50%) rotate(45deg)',
+							'-ms-transform': 'translateY(-50%) rotate(45deg)',
+							'transform': 'translateY(-50%) rotate(45deg)'
+						},
+						'arrows-right-one': {
+							'display': 'block',
+							'position': 'absolute',
+							'top': '50%',
+							'right': '3px',
+							'width': '16px',
+							'height': '16px',
+							'border-right': '1px solid',
+							'border-top': '1px solid',
+							'border-color': settings.arrowsColor,
+							'-webkit-transform': 'translateY(-50%) rotate(45deg)',
+							'-moz-transform': 'translateY(-50%) rotate(45deg)',
+							'-ms-transform': 'translateY(-50%) rotate(45deg)',
+							'transform': 'translateY(-50%) rotate(45deg)'
 						}
 					};
 
-					return styles[dotType];
+					return styles[navType];
 				};
 
 				if ($l) {
@@ -189,15 +243,23 @@
 						});
 
 					if (settings.navigation == 'arrows' || settings.navigation == 'both') {
-						var $prev = $('<a class="sg-prev ' + settings.arrowsType + '" href="#prev"><span class="arrow-one" style="background-color:' + settings.arrowsColor + ';"></span><span class="arrow-two" style="border-color:' + settings.arrowsColor + ';"></span></a>');
-						var $next = $('<a class="sg-next ' + settings.arrowsType + '" href="#next"><span class="arrow-one" style="background-color:' + settings.arrowsColor + ';"></span><span class="arrow-two" style="border-color:' + settings.arrowsColor + ';"></span></a>');
+						var $prev = $('<a class="sg-prev ' + settings.arrowsType + '" href="#prev"><span class="arrow"></span></a>');
+						var $next = $('<a class="sg-next ' + settings.arrowsType + '" href="#next"><span class="arrow"></span></a>');
 						$simpleGallery.append($prev, $next);
-						$prev.on('click.simpleGal', function(event) {
+						$prev
+						.css(navProperties('arrows-left'))
+						.on('click.simpleGal', function(event) {
 							changeImage("previous");
-						});
-						$next.on('click.simpleGal', function(event) {
+						})
+						.children('.arrow')
+						.css(navProperties('arrows-left-one'));
+						$next
+						.css(navProperties('arrows-right'))
+						.on('click.simpleGal', function(event) {
 							changeImage("next");
-						});
+						})
+						.children('.arrow')
+						.css(navProperties('arrows-right-one'));
 					}
 					if (settings.navigation == 'dots' || settings.navigation == 'both') {
 						var $galNav = $('<div class="gallery-nav"></div>');
@@ -206,8 +268,8 @@
 						if (settings.navigation == 'dots' || settings.navigation == 'both') {
 							for (var i = 0; i < numberOfChildren; i++) {
 								var $thisDot = $('<a class="dot dot-' + i + ((i === 0) ? ' current' : '') + '" data-number="' + i + '" >' + (i + 1) + '</a>');
-								$galNav.css(dotProperties('parent')).append($thisDot);
-								$thisDot.css(dotProperties('dots', i));
+								$galNav.css(navProperties('parent')).append($thisDot);
+								$thisDot.css(navProperties('dots', i));
 							}
 						}
 
