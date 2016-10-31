@@ -17,6 +17,7 @@
 		}, options);
 		return this.each(function() {
 			var gEl = $(this);
+			var widest = 1;
 			var startX, startY;
 
 			var bindIt = function(element) {
@@ -67,6 +68,7 @@
 				var numberOfChildren = $l.find('li').length;
 				var $simpleGallery = $l.wrap('<div class="simple-gallery" style="opacity: 0;">').parent();
 				var tallest = Math.max.apply(null, $l.children().map(function(){ return $(this).outerHeight(); }).get());
+				widest = Math.max.apply(null, $l.children().map(function(){ var ratio = $(this).outerWidth()/$(this).outerHeight(); return ratio; }).get());
 
 				var listProperties = function(elementType, i) {
 					var index = i || 0;
@@ -85,7 +87,7 @@
 						'ul': {
 							'fade': {
 								'width': '100%',
-								'height': (settings.adaptiveHeight ? $l.find('li:first-child').height() : tallest) + 'px',
+								'height': (settings.adaptiveHeight ? $l.find('li:first-child').height() : $g.outerWidth() / widest) + 'px',
 								'overflow': 'hidden',
 								'display': 'block',
 								'listStyle': 'none'
@@ -114,8 +116,10 @@
 						},
 						'image': {
 							'fade': {
-								'max-width': '100%',
-								'max-height': '100%',
+								'max-width': (settings.adaptiveHeight ? 'auto' : '100%'),
+								'max-height': (settings.adaptiveHeight ? 'auto' : '100%'),
+								'width': (settings.adaptiveHeight ? '100%' : 'auto'),
+								'height': (settings.adaptiveHeight ? 'auto' : '100%'),
 								'display': 'block',
 								'position': 'absolute',
 								'top': '50%',
@@ -386,9 +390,8 @@
 						'height': $l.find('.current').children('img').height() + 'px'
 					});
 				}else{
-					var tallest = Math.max.apply(null, $l.children().map(function(){ return $(this).outerHeight(); }).get());
 					$l.css({
-					  'height': tallest + 'px'
+					  'height': ($l.outerWidth() / widest) + 'px'
 					});
 				  }
 				if(!galleryInitiated){
