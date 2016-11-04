@@ -13,13 +13,45 @@
 			arrowsColor: '#000',
 			dotsColor: '#000',
 			slidesContainer: '.images-list',
-			swipe: 'horizontal'
+			swipe: 'horizontal',
+			autoScroll: false,
+			scrollSpeed: 3000,
+			scrollStartDelay: 3000,
+			scrollRestart: true,
+			restartDelay: 3000
 		}, options);
 		return this.each(function() {
 			var gEl = $(this);
 			var widest = 1;
 			var startX, startY;
+			var startTimeout, scrollInterval;
 
+			var autoScroll = function(){
+				if(settings.scrollStartDelay == 'load'){
+					$(window).on('load.simpleGal', function(){
+						scrollInterval = setInterval(function(){
+							changeImage('next');
+						}, settings.scrollSpeed);
+					});
+				}else{
+					startTimeout = setTimeout(function(){
+						scrollInterval = setInterval(function(){
+							changeImage('next');
+						}, settings.scrollSpeed);
+					}, settings.scrollStartDelay);
+				}
+			};
+			
+			var clearRestartScroll = function(){				
+				clearTimeout(startTimeout);
+				clearInterval(scrollInterval);
+				startTimeout = setTimeout(function(){
+					scrollInterval = setInterval(function(){
+						changeImage('next');
+					}, settings.scrollSpeed);
+				}, settings.restartDelay);
+			};
+			
 			var bindIt = function(element) {
 				$(gEl).on('touchstart.simpleGal', touchGalleryStart);
 				$(gEl).on('touchmove.simpleGal', touchGalleryMove);
@@ -55,6 +87,7 @@
 				var dist = (settings.swipe == 'horizontal' ? distX : distY);
 				if (Math.abs(dist) > 40) {
 					e.preventDefault();
+					clearRestartScroll();
 					changeImage(((dist > 0) ? "previous" : "next"));
 				}
 			};
@@ -253,6 +286,7 @@
 						$prev
 						.css(navProperties('arrows-left'))
 						.on('click.simpleGal', function(event) {
+							clearRestartScroll();
 							changeImage("previous");
 						})
 						.children('.arrow')
@@ -260,6 +294,7 @@
 						$next
 						.css(navProperties('arrows-right'))
 						.on('click.simpleGal', function(event) {
+							clearRestartScroll();
 							changeImage("next");
 						})
 						.children('.arrow')
@@ -279,11 +314,15 @@
 
 						$galNav.find('a').click(function(e) {
 							e.preventDefault();
+							clearRestartScroll();
 							changeImage($(this).index());
 						});
 					}
 
 					bindIt($(gEl));
+					if(settings.autoScroll){
+						autoScroll();
+					}
 
 				} else {
 					console.log('Error. No "' + settings.slidesContainer + '" class found.');
