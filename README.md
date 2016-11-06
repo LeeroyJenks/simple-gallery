@@ -24,11 +24,11 @@ jQuery
 
 Some minor CSS must be used in order to get the gallery working properly. You'll need to define the width of the image gallery. `slidesContainer` must be defined for the gallery to work properly.
 
-The gallery includes dots navigation as well as arrows, which you can choose to remove.
+The gallery includes dots navigation as well as arrows, which you can choose to remove.<br>
 You can also include titles and descriptions to each slide. To do so, you will need to add them as data values to each slide. For example, if a slide has a title and description:
-`<li class="slide" data-title="Some Title" data-description="Some Description"></li>`
+```<li class="slide" data-title="Some Title" data-description="Some Description"></li>```
 You will then need to define the data attributes in the `description` option. For the example above, you would need to:
-`description: ['title', 'description']`
+```description: ['title', 'description']```
 simple-gallery will then create those fields and populate them in accordance to the respective slide. You will need to style the descriptions.
 
 ###Example
