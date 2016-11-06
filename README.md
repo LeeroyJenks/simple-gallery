@@ -112,19 +112,19 @@ simple-gallery will then create those fields and populate them in accordance to 
 
 ###Options
 
-Options   | Definition
---------- | ------------------------------------------------------------------------
-`slidesContainer` | Parent container of slides.<br>`default: '.images-list'`
-`adaptiveHeight` | Whether the gallery height should adapt to the image being displayed (`true`) or if the image should adapt to the gallery height (`false`)<br>`default: false`
-`description` | Read description above for full details. List of data atributes used in description as an array. ie `['title', 'description']`.<br>`default: false`
-`navigation` | `'dots'`, `'arrows'`, `'both'`<br>Whether to use dots, arrows, or both.<br>`default: 'both'`
-`dotsPositionX` | `'left'`, `'center'`, `'right'`<br>Dots position in gallery container.<br>`default: 'center'`
-`dotsPositionY` | `'top'`, `'center'`, `'bottom'`<br>Dots position in gallery container.<br>`default: 'center'`
-`arrowsColor` | `default: '#000'`
-`dotsColor` | `default: '#000'`
-`swipe` | `'horizontal'`, `'vertical'`<br>Will also affect dots being vertical or horizontal.<br>**`'vertical'` currently broken due to inability to prevent scroll**<br>`default: 'horizontal'`
-`autoScroll` | Whether gallery scrolls through slides automatically.<br>`default: false`
-`scrollSpeed` | Time between image change in milliseconds.<br>`default: 3000`
+Options            | Definition
+------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+`slidesContainer`  | Parent container of slides.<br>`default: '.images-list'`
+`adaptiveHeight`   | Whether the gallery height should adapt to the image being displayed (`true`) or if the image should adapt to the gallery height (`false`)<br>`default: false`
+`description`      | Read description above for full details. List of data atributes used in description as an array. ie `['title', 'description']`.<br>`default: false`
+`navigation`       | `'dots'`, `'arrows'`, `'both'`<br>Whether to use dots, arrows, or both.<br>`default: 'both'`
+`dotsPositionX`    | `'left'`, `'center'`, `'right'`<br>Dots position in gallery container.<br>`default: 'center'`
+`dotsPositionY`    | `'top'`, `'center'`, `'bottom'`<br>Dots position in gallery container.<br>`default: 'center'`
+`arrowsColor`      | `default: '#000'`
+`dotsColor`        | `default: '#000'`
+`swipe`            | `'horizontal'`, `'vertical'`<br>Will also affect dots being vertical or horizontal.<br>**`'vertical'` currently broken due to inability to prevent scroll**<br>`default: 'horizontal'`
+`autoScroll`       | Whether gallery scrolls through slides automatically.<br>`default: false`
+`scrollSpeed`      | Time between image change in milliseconds.<br>`default: 3000`
 `scrollStartDelay` | Time before gallery begins scrolling in milliseconds.<br>`default: 3000`
-`scrollRestart` | Whether auto scroll restarts once the user interacts with the gallery.<br>`default: true`
-`restartDelay` | If `scrollRestart` is `true`, how long after the user interacts the gallery should start scrolling again, in milliseconds.<br>`default: 3000`
+`scrollRestart`    | Whether auto scroll restarts once the user interacts with the gallery.<br>`default: true`
+`restartDelay`     | If `scrollRestart` is `true`, how long after the user interacts the gallery should start scrolling again, in milliseconds.<br>`default: 3000`
