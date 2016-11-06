@@ -68,13 +68,25 @@ simple-gallery will then create those fields and populate them in accordance to 
         height: auto;
         width: 100%;
     }
+    .image-gallery .gallery-description{
+        display: block;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: #1565C0;
+        color: #fff;
+        padding: 10px 20px;
+        z-index: 1;
+        letter-spacing: 0.5px;
+    }
 </style>
 
 <div class="image-gallery">
     <ul class="slide-container">
         <li class="slide" data-title="title 1"><img src="IMAGE_ONE.jpg" alt="Image 1"/></li>
-        <li class="slide" data-title="title 1"><img src="IMAGE_TWO.jpg" alt="Image 2"/></li>
-        <li class="slide" data-title="title 1"><img src="IMAGE_THREE.jpg" alt="Image 3"/></li>
+        <li class="slide" data-title="title 2"><img src="IMAGE_TWO.jpg" alt="Image 2"/></li>
+        <li class="slide"><img src="IMAGE_THREE.jpg" alt="Image 3"/></li>
     </ul>
 </div>
 
