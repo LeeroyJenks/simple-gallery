@@ -68,6 +68,7 @@ simple-gallery will then create those fields and populate them in accordance to 
         height: auto;
         width: 100%;
     }
+    
     .image-gallery .gallery-description{
         display: block;
         position: absolute;
