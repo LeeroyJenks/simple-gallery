@@ -102,6 +102,7 @@
 				var $simpleGallery = $l.wrap('<div class="simple-gallery" style="opacity: 0;">').parent();
 				var tallest = Math.max.apply(null, $l.children().map(function(){ return $(this).outerHeight(); }).get());
 				widest = Math.max.apply(null, $l.children().map(function(){ var ratio = $(this).outerWidth()/$(this).outerHeight(); return ratio; }).get());
+				var firstDescription = {};
 
 				var listProperties = function(elementType, i) {
 					var index = i || 0;
@@ -264,8 +265,8 @@
 
 				if ($l) {
 					$simpleGallery.css(listProperties('gallery'))
-						.children('ul').css(listProperties('ul'))
-						.find('li').each(function(index) {
+						.children(settings.slidesContainer).css(listProperties('ul'))
+						.children().each(function(index) {
 							var i = index;
 							$(this).addClass((i === 0 ? 'current' : ''))
 								.css(listProperties('list', i))
@@ -276,6 +277,15 @@
 								$simpleGallery.animate({
 									'opacity': 1
 								}, 200);
+							}
+							if(i === 0){
+								if(settings.description){
+									for(var j=0; j < settings.description.length; j++){
+										if($(this).data(settings.description[j])){
+											firstDescription[settings.description[j]] = $(this).data(settings.description[j]);
+										}
+									}
+								}
 							}
 						});
 
@@ -300,11 +310,11 @@
 						.children('.arrow')
 						.css(navProperties('arrows-right-one'));
 					}
-					if (settings.navigation == 'dots' || settings.navigation == 'both') {
+					if(settings.navigation == 'dots' || settings.navigation == 'both') {
 						var $galNav = $('<div class="gallery-nav"></div>');
 						$l.after($galNav);
 						var dotList = '';
-						if (settings.navigation == 'dots' || settings.navigation == 'both') {
+						if(settings.navigation == 'dots' || settings.navigation == 'both') {
 							for (var i = 0; i < numberOfChildren; i++) {
 								var $thisDot = $('<a class="dot dot-' + i + ((i === 0) ? ' current' : '') + '" data-number="' + i + '" >' + (i + 1) + '</a>');
 								$galNav.css(navProperties('parent')).append($thisDot);
@@ -317,6 +327,14 @@
 							clearRestartScroll();
 							changeImage($(this).index());
 						});
+					}
+					
+					if(settings.description){
+						var $galDesc = $('<div class="gallery-description"></div>');
+						$g.append($galDesc);
+						for(var d = 0; d < settings.description.length; d++){
+							$galDesc.append('<div class="'+settings.description[d]+'">'+firstDescription[settings.description[d]]+'</div>');
+						}
 					}
 
 					bindIt($(gEl));
@@ -397,16 +415,24 @@
 						'height': $l.find('.current').children('img').height() + 'px'
 					}, 200);
 				}
-				if (settings.description && typeof settings.description === 'object') {
+				if (settings.description && Array.isArray(settings.description)) {
 					$g.find('.gallery-description').animate({
 						'opacity': 0
-					}, 200, function() {
-						for (var key in settings.description) {
-							$g.find('.' + key).html($l.find('.current').data(settings.description[key]));
+					}, 100, function() {
+						var hasDescription = false;
+						for (var i = 0; i < settings.description.length; i++) {
+							if($l.find('.current').data(settings.description[i])){
+								$g.find('.' + settings.description[i]).html($l.find('.current').data(settings.description[i]));
+								hasDescription = true;
+							}else{
+								$g.find('.' + settings.description[i]).empty();
+							}
 						}
-						$g.find('.gallery-description').animate({
-							'opacity': 1
-						}, 200);
+						if(hasDescription){
+							$g.find('.gallery-description').animate({
+								'opacity': 1
+							}, 100);
+						}
 					});
 				}
 			};
