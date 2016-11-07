@@ -42,14 +42,16 @@
 				}
 			};
 			
-			var clearRestartScroll = function(){				
-				clearTimeout(startTimeout);
-				clearInterval(scrollInterval);
-				startTimeout = setTimeout(function(){
-					scrollInterval = setInterval(function(){
-						changeImage('next');
-					}, settings.scrollSpeed);
-				}, settings.restartDelay);
+			var clearRestartScroll = function(){
+				if(settings.autoScroll){			
+					clearTimeout(startTimeout);
+					clearInterval(scrollInterval);
+					startTimeout = setTimeout(function(){
+						scrollInterval = setInterval(function(){
+							changeImage('next');
+						}, settings.scrollSpeed);
+					}, settings.restartDelay);
+				}
 			};
 			
 			var bindIt = function(element) {
