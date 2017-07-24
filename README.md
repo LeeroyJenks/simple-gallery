@@ -1,16 +1,16 @@
 # simple-gallery
 A simple jQuery gallery plugin with touch and auto scroll support.
 
-##Demo
+## Demo
 [plugins.getdans.info/simple-gallery](http://plugins.getdans.info/simple-gallery)
 
-##Installation
+## Installation
 Download from GitHub
 
-###Requirements
+### Requirements
 jQuery
 
-###Use
+### Use
 ```html
 <script>
     $(document).ready(function(){
@@ -20,7 +20,7 @@ jQuery
     });
 </script>
 ```
-###Description
+### Description
 
 Some minor CSS must be used in order to get the gallery working properly. You'll need to define the width of the image gallery. `slidesContainer` must be defined for the gallery to work properly.
 
@@ -31,7 +31,7 @@ You will then need to define the data attributes in the `description` option. Fo
 `description: ['title', 'description']`<br>
 simple-gallery will then create those fields and populate them in accordance to the respective slide. You will need to style the descriptions.
 
-###Example
+### Example
 
 ```html
 <style>
@@ -110,7 +110,7 @@ simple-gallery will then create those fields and populate them in accordance to 
 </script>
 ```
 
-###Options
+### Options
 
 Options            | Definition
 ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
